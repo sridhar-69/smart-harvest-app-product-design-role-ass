@@ -73,4 +73,4 @@ The Smart Harvest App is not just a tax tool—it's a full financial wellness co
 
 ---
 
-Would you like me to create a downloadable PDF version of this content now?
+
