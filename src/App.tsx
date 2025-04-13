@@ -11,6 +11,7 @@ import Opportunities from "./pages/Opportunities";
 import Learn from "./pages/Learn";
 import Simulator from "./pages/Simulator";
 import Profile from "./pages/Profile";
+import Settings from "./pages/Settings";
 import NotFound from "./pages/NotFound";
 import Index from "./pages/Index";
 
@@ -30,6 +31,7 @@ const App = () => (
               <Route path="learn" element={<Learn />} />
               <Route path="simulator" element={<Simulator />} />
               <Route path="profile" element={<Profile />} />
+              <Route path="settings" element={<Settings />} />
             </Route>
             <Route path="*" element={<NotFound />} />
           </Routes>
