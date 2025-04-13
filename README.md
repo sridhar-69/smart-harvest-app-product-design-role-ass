@@ -1,73 +1,76 @@
-# Welcome to your Lovable project
+## **Smart Harvest App – Prototype Description**
 
-## Project info
+**Prototype Link**: [Smart Harvest Prototype](https://preview--smart-harvest-app-product-design-role-ass-37.lovable.app/)  
+**GitHub Repository**: [GitHub - sridhar-69](https://github.com/sridhar-69/smart-harvest-app-product-design-role-ass)  
+**Name**: Ganta Venkata Sridhar  
+**Email**: venkatasridharganta@gmail.com  
 
-**URL**: https://lovable.dev/projects/da1f6473-90ff-460f-ad03-0db5628827f3
+---
 
-## How can I edit this code?
+### **Overview**
+Smart Harvest App is a personal finance tool focused on **tax-loss harvesting**. It enables users to identify underperforming assets and take strategic actions to reduce capital gains tax. The app blends data visualization, education, and interactivity to empower both novice and experienced investors.
 
-There are several ways of editing your application.
+---
 
-**Use Lovable**
+### **1. Dashboard**
+Provides a real-time financial summary:
+- Estimated tax-saving potential
+- Number of harvestable assets
+- Portfolio insights with gain/loss ratios and asset allocation
+- Personalized alerts to prompt timely action
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/da1f6473-90ff-460f-ad03-0db5628827f3) and start prompting.
+---
 
-Changes made via Lovable will be committed automatically to this repo.
+### **2. Opportunities**
+Helps users discover and act on tax-saving opportunities:
+- Breakdown of each asset’s loss and projected tax savings
+- AI-generated insights (e.g., advice on harvesting tech/crypto losses)
+- Direct "Harvest" actions streamline decision-making
 
-**Use your preferred IDE**
+---
 
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
+### **3. Learn & Earn**
+An engaging educational hub:
+- Five short modules covering essentials like wash sale rules and advanced strategies
+- XP points and badge rewards to encourage progress
+- Visual status indicators like "Tax Ninja" to gamify learning
 
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
+---
 
-Follow these steps:
+### **4. Tax Simulator**
+Interactive simulator to project tax outcomes:
+- Adjustable parameters (e.g., tax bracket, capital gains)
+- Simulations that consider wash sale rules
+- Charts comparing pre- and post-harvesting tax impact over 5 years
 
-```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
+---
 
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
+### **5. Profile**
+Tracks user growth and performance:
+- Savings history and number of identified opportunities
+- Learning progress and earned badges
+- Tax confidence score and recent activity log
 
-# Step 3: Install the necessary dependencies.
-npm i
+---
 
-# Step 4: Start the development server with auto-reloading and an instant preview.
-npm run dev
-```
+### **6. Settings**
+Simple, intuitive controls:
+- Manage account details and notification preferences
+- Download reports and control data privacy
 
-**Edit a file directly in GitHub**
+---
 
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
+### **Design Approach**
+- **User-Centered**: Each screen is clean, informative, and actionable  
+- **Modular**: Clearly defined sections for scalability  
+- **Accessible**: Friendly colors, icons, and concise content  
+- **Professional Aesthetic**: Modern visuals optimized for all user levels  
 
-**Use GitHub Codespaces**
+---
 
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
+### **Final Notes**
+The Smart Harvest App is not just a tax tool—it's a full financial wellness companion. With strong UX, personalized insights, and smart learning features, it offers a seamless and empowering experience for users looking to save smartly and learn along the way.
 
-## What technologies are used for this project?
+---
 
-This project is built with:
-
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
-
-## How can I deploy this project?
-
-Simply open [Lovable](https://lovable.dev/projects/da1f6473-90ff-460f-ad03-0db5628827f3) and click on Share -> Publish.
-
-## Can I connect a custom domain to my Lovable project?
-
-Yes, you can!
-
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
-
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/tips-tricks/custom-domain#step-by-step-guide)
+Would you like me to create a downloadable PDF version of this content now?
