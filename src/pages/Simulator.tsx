@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from "react";
 import { Calculator, Check, ChevronDown, Info, RefreshCw, TrendingDown } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -6,6 +5,7 @@ import Card, { CardContent, CardDescription, CardFooter, CardHeader, CardTitle }
 import { Label } from "@/components/ui/label";
 import { Slider } from "@/components/ui/slider";
 import { Switch } from "@/components/ui/switch";
+import { ScrollArea } from "@/components/ui/scroll-area";
 import {
   Select,
   SelectContent,
@@ -20,7 +20,7 @@ import {
   XAxis, 
   YAxis, 
   CartesianGrid, 
-  Tooltip, 
+  Tooltip as RechartsTooltip, 
   Legend, 
   ResponsiveContainer, 
   LineChart, 
@@ -61,30 +61,24 @@ const Simulator = () => {
     setSelectedAssets([]);
   };
   
-  // Calculate tax savings
   useEffect(() => {
-    // Calculate before harvest tax
     const taxBeforeHarvest = (additionalCapitalGains * parseInt(taxRate)) / 100;
     setTaxSavingsBeforeHarvest(taxBeforeHarvest);
     
-    // Calculate losses from selected assets
     const totalLosses = lossAssets
       .filter(asset => selectedAssets.includes(asset.id))
       .reduce((sum, asset) => sum + asset.loss, 0);
     
-    // Apply wash sale rule if selected
     const effectiveLosses = includeWashSale 
       ? totalLosses 
-      : totalLosses * 0.8; // Simplified wash sale impact
+      : totalLosses * 0.8;
     
-    // Calculate gains after offsetting losses
     const netGains = Math.max(0, additionalCapitalGains - effectiveLosses);
     const taxAfterHarvest = (netGains * parseInt(taxRate)) / 100;
     
     setTaxSavingsAfterHarvest(taxBeforeHarvest - taxAfterHarvest);
   }, [selectedAssets, taxRate, additionalCapitalGains, includeWashSale]);
   
-  // Prepare data for charts
   const comparisonChartData = [
     {
       name: "Before Harvesting",
@@ -98,7 +92,6 @@ const Simulator = () => {
     },
   ];
   
-  // Prepare data for impact chart (simplified projection)
   const generateImpactData = () => {
     const data = [];
     const currentYear = new Date().getFullYear();
@@ -124,7 +117,6 @@ const Simulator = () => {
       </div>
       
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-        {/* Simulation Controls */}
         <div className="lg:col-span-1 space-y-6">
           <Card>
             <CardHeader>
@@ -258,7 +250,6 @@ const Simulator = () => {
           </Card>
         </div>
         
-        {/* Charts and Results */}
         <div className="lg:col-span-2 space-y-6">
           <Card>
             <CardHeader>
@@ -275,7 +266,7 @@ const Simulator = () => {
                     <CartesianGrid strokeDasharray="3 3" />
                     <XAxis dataKey="name" />
                     <YAxis />
-                    <Tooltip formatter={(value) => `₹${value.toLocaleString()}`} />
+                    <RechartsTooltip formatter={(value) => `₹${value.toLocaleString()}`} />
                     <Legend />
                     <Bar name="Tax Paid" dataKey="tax" fill="#E74C3C" />
                     <Bar name="Tax Saved" dataKey="savings" fill="#2ECC71" />
@@ -300,7 +291,7 @@ const Simulator = () => {
                     <CartesianGrid strokeDasharray="3 3" />
                     <XAxis dataKey="year" />
                     <YAxis />
-                    <Tooltip formatter={(value) => `₹${value.toLocaleString()}`} />
+                    <RechartsTooltip formatter={(value) => `₹${value.toLocaleString()}`} />
                     <Legend />
                     <Line 
                       type="monotone" 
