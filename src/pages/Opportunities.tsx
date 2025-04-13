@@ -9,6 +9,14 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { harvestOpportunities } from "@/data/mockData";
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from "recharts";
+import {
+  Table,
+  TableBody,
+  TableCell,
+  TableHead,
+  TableHeader,
+  TableRow,
+} from "@/components/ui/table";
 
 const Opportunities = () => {
   const [searchTerm, setSearchTerm] = useState("");
@@ -27,6 +35,11 @@ const Opportunities = () => {
     (total, asset) => total + asset.potentialSaving,
     0
   );
+
+  // Format currency values consistently
+  const formatCurrency = (value: number) => {
+    return `₹${value.toLocaleString('en-IN')}`;
+  };
 
   return (
     <div className="space-y-8 animate-fade-in">
@@ -60,7 +73,7 @@ const Opportunities = () => {
             <CardTitle className="text-white">Total Potential Savings</CardTitle>
           </CardHeader>
           <CardContent>
-            <div className="text-3xl font-bold">₹{totalPotentialSavings.toLocaleString()}</div>
+            <div className="text-3xl font-bold">{formatCurrency(totalPotentialSavings)}</div>
             <p className="text-white/80 text-sm">From {lossAssets.length} harvestable assets</p>
           </CardContent>
         </Card>
@@ -117,24 +130,24 @@ const Opportunities = () => {
                         </div>
                       </div>
 
-                      <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mt-4 md:mt-0">
-                        <div>
-                          <p className="text-xs text-muted-foreground">Current Value</p>
-                          <p className="font-semibold">₹{asset.currentValue.toLocaleString()}</p>
-                        </div>
-                        <div>
-                          <p className="text-xs text-muted-foreground">Initial Value</p>
-                          <p className="font-semibold">₹{asset.initialValue.toLocaleString()}</p>
-                        </div>
-                        <div>
-                          <p className="text-xs text-muted-foreground">Loss Amount</p>
-                          <p className="font-semibold text-red-500">₹{asset.loss.toLocaleString()}</p>
-                        </div>
-                        <div>
-                          <p className="text-xs text-muted-foreground">Tax Saving</p>
-                          <p className="font-semibold text-emerald-500">₹{asset.potentialSaving.toLocaleString()}</p>
-                        </div>
-                      </div>
+                      <Table className="md:w-auto w-full mt-4 md:mt-0">
+                        <TableHeader>
+                          <TableRow className="hover:bg-transparent border-0">
+                            <TableHead className="h-8 p-0 text-xs text-muted-foreground">Current Value</TableHead>
+                            <TableHead className="h-8 p-0 text-xs text-muted-foreground">Initial Value</TableHead>
+                            <TableHead className="h-8 p-0 text-xs text-muted-foreground">Loss Amount</TableHead>
+                            <TableHead className="h-8 p-0 text-xs text-muted-foreground">Tax Saving</TableHead>
+                          </TableRow>
+                        </TableHeader>
+                        <TableBody>
+                          <TableRow className="hover:bg-transparent border-0">
+                            <TableCell className="font-medium p-0">{formatCurrency(asset.currentValue)}</TableCell>
+                            <TableCell className="font-medium p-0">{formatCurrency(asset.initialValue)}</TableCell>
+                            <TableCell className="font-medium p-0 text-red-500">{formatCurrency(asset.loss)}</TableCell>
+                            <TableCell className="font-medium p-0 text-emerald-500">{formatCurrency(asset.potentialSaving)}</TableCell>
+                          </TableRow>
+                        </TableBody>
+                      </Table>
                       
                       <div className="flex gap-2 mt-4 md:mt-0">
                         <Dialog>
@@ -154,24 +167,22 @@ const Opportunities = () => {
                             </DialogHeader>
                             <div className="py-4">
                               <div className="space-y-6">
-                                <div className="grid grid-cols-2 gap-4">
-                                  <div>
-                                    <p className="text-sm text-muted-foreground">Current Value</p>
-                                    <p className="text-lg font-semibold">₹{asset.currentValue.toLocaleString()}</p>
-                                  </div>
-                                  <div>
-                                    <p className="text-sm text-muted-foreground">Initial Value</p>
-                                    <p className="text-lg font-semibold">₹{asset.initialValue.toLocaleString()}</p>
-                                  </div>
-                                  <div>
-                                    <p className="text-sm text-muted-foreground">Loss Amount</p>
-                                    <p className="text-lg font-semibold text-red-500">₹{asset.loss.toLocaleString()}</p>
-                                  </div>
-                                  <div>
-                                    <p className="text-sm text-muted-foreground">Potential Tax Saving</p>
-                                    <p className="text-lg font-semibold text-emerald-500">₹{asset.potentialSaving.toLocaleString()}</p>
-                                  </div>
-                                </div>
+                                <Table>
+                                  <TableBody>
+                                    <TableRow>
+                                      <TableCell className="text-sm text-muted-foreground">Current Value</TableCell>
+                                      <TableCell className="text-lg font-semibold">{formatCurrency(asset.currentValue)}</TableCell>
+                                      <TableCell className="text-sm text-muted-foreground">Initial Value</TableCell>
+                                      <TableCell className="text-lg font-semibold">{formatCurrency(asset.initialValue)}</TableCell>
+                                    </TableRow>
+                                    <TableRow>
+                                      <TableCell className="text-sm text-muted-foreground">Loss Amount</TableCell>
+                                      <TableCell className="text-lg font-semibold text-red-500">{formatCurrency(asset.loss)}</TableCell>
+                                      <TableCell className="text-sm text-muted-foreground">Tax Saving</TableCell>
+                                      <TableCell className="text-lg font-semibold text-emerald-500">{formatCurrency(asset.potentialSaving)}</TableCell>
+                                    </TableRow>
+                                  </TableBody>
+                                </Table>
                                 
                                 <div>
                                   <h4 className="text-sm font-medium mb-2">Performance</h4>
@@ -188,7 +199,7 @@ const Opportunities = () => {
                                         <CartesianGrid strokeDasharray="3 3" />
                                         <XAxis dataKey="name" />
                                         <YAxis />
-                                        <Tooltip formatter={(value) => `₹${value.toLocaleString()}`} />
+                                        <Tooltip formatter={(value) => formatCurrency(value as number)} />
                                         <Bar dataKey="value" fill="#2ECC71" />
                                       </BarChart>
                                     </ResponsiveContainer>
@@ -266,30 +277,30 @@ const Opportunities = () => {
                         </div>
                       </div>
 
-                      <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mt-4 md:mt-0">
-                        <div>
-                          <p className="text-xs text-muted-foreground">Current Value</p>
-                          <p className="font-semibold">₹{asset.currentValue.toLocaleString()}</p>
-                        </div>
-                        <div>
-                          <p className="text-xs text-muted-foreground">Initial Value</p>
-                          <p className="font-semibold">₹{asset.initialValue.toLocaleString()}</p>
-                        </div>
-                        <div>
-                          <p className="text-xs text-muted-foreground">
-                            {asset.status === "loss" ? "Loss Amount" : "Gain Amount"}
-                          </p>
-                          <p className={`font-semibold ${
-                            asset.status === "loss" ? "text-red-500" : "text-emerald-500"
-                          }`}>
-                            ₹{(asset.loss || asset.gain).toLocaleString()}
-                          </p>
-                        </div>
-                        <div>
-                          <p className="text-xs text-muted-foreground">Recommendation</p>
-                          <p className="font-semibold">{asset.recommendation}</p>
-                        </div>
-                      </div>
+                      <Table className="md:w-auto w-full mt-4 md:mt-0">
+                        <TableHeader>
+                          <TableRow className="hover:bg-transparent border-0">
+                            <TableHead className="h-8 p-0 text-xs text-muted-foreground">Current Value</TableHead>
+                            <TableHead className="h-8 p-0 text-xs text-muted-foreground">Initial Value</TableHead>
+                            <TableHead className="h-8 p-0 text-xs text-muted-foreground">
+                              {asset.status === "loss" ? "Loss Amount" : "Gain Amount"}
+                            </TableHead>
+                            <TableHead className="h-8 p-0 text-xs text-muted-foreground">Recommendation</TableHead>
+                          </TableRow>
+                        </TableHeader>
+                        <TableBody>
+                          <TableRow className="hover:bg-transparent border-0">
+                            <TableCell className="font-medium p-0">{formatCurrency(asset.currentValue)}</TableCell>
+                            <TableCell className="font-medium p-0">{formatCurrency(asset.initialValue)}</TableCell>
+                            <TableCell className={`font-medium p-0 ${
+                              asset.status === "loss" ? "text-red-500" : "text-emerald-500"
+                            }`}>
+                              {formatCurrency(asset.status === "loss" ? asset.loss : asset.gain)}
+                            </TableCell>
+                            <TableCell className="font-medium p-0">{asset.recommendation}</TableCell>
+                          </TableRow>
+                        </TableBody>
+                      </Table>
                       
                       <div className="flex gap-2 mt-4 md:mt-0">
                         <Button variant="outline" size="sm">
