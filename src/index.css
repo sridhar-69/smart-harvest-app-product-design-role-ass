@@ -101,22 +101,68 @@
   }
   
   h1 {
-    @apply text-3xl lg:text-4xl;
+    @apply text-3xl lg:text-4xl leading-tight;
   }
   
   h2 {
-    @apply text-2xl lg:text-3xl;
+    @apply text-2xl lg:text-3xl leading-tight;
   }
   
   h3 {
-    @apply text-xl lg:text-2xl;
+    @apply text-xl lg:text-2xl leading-tight;
   }
   
   .card-hover {
-    @apply transition-all duration-200 hover:shadow-md hover:-translate-y-1;
+    @apply transition-all duration-300 hover:shadow-lg hover:-translate-y-1;
   }
   
   .gradient-text {
     @apply bg-clip-text text-transparent bg-gradient-mint-teal;
+  }
+}
+
+/* Enhanced spacing utilities */
+@layer components {
+  .content-spacing {
+    @apply space-y-6;
+  }
+  
+  .section-spacing {
+    @apply py-6 md:py-8;
+  }
+  
+  .card-content {
+    @apply p-5 md:p-6;
+  }
+  
+  /* Interactive elements */
+  .btn-hover {
+    @apply relative overflow-hidden transition-all duration-300 
+           after:absolute after:inset-0 after:bg-black/10 
+           after:opacity-0 hover:after:opacity-100;
+  }
+  
+  /* Enhanced animations */
+  .animate-hover-scale {
+    @apply transition-transform duration-200 hover:scale-105;
+  }
+  
+  .animate-pulse-slow {
+    @apply animate-[pulse_3s_ease-in-out_infinite];
+  }
+  
+  /* Improved button styling */
+  .btn-accent {
+    @apply bg-emerald-500 hover:bg-emerald-600 text-white
+           transition-colors duration-300 transform hover:scale-[1.02];
+  }
+  
+  /* Table styling enhancement */
+  .table-enhanced th {
+    @apply text-xs font-medium text-muted-foreground uppercase tracking-wider;
+  }
+  
+  .table-enhanced td {
+    @apply py-3;
   }
 }
